@@ -6,6 +6,7 @@ COLOR_COMMAND = \033[36m
 COLOR_YELLOW = \033[33m
 COLOR_GREEN = \033[32m
 COLOR_RED = \033[31m
+FLAG_ARG=$(flag)
 
 PROJECT := A4 - ViniJR Blog
 PORT := 10004
@@ -26,6 +27,13 @@ compose-down:
 msg:
 	chmod +x deployments/check-init.sh
 	./deployments/check-init.sh
+
+ctf: deploy msg
+	echo "flag to use : ${FLAG_ARG}"
+	echo "${FLAG_ARG}" >> app/flag.txt
+
+deploy:
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
 
 ## Prints help message
 help:

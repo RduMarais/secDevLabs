@@ -16,22 +16,22 @@ A laboratory for learning secure web and mobile development in a practical manne
 
 This fork has been created to add CTF-like flags in the following applications : 
 
- * Tic-Tac-Toe
+ * [x] Tic-Tac-Toe
    * modifications done
    * flag in generate-env.sh
- * SnakePro
- * CopyNPaste API
+ * [ ] SnakePro
+ * [x] CopyNPaste API
    * no changes needed
- * SSType
- * Gossip World
+ * [ ] SSType
+ * [x] Gossip World
    * no changes needed
- * ViniJr Blog
- * Stegonography
- * imentech
- * Golden Hat Society
- * Saidajaula Monster Fit
- * Amarelo Designs
- * GamesIrados.com
+ * [ ] ViniJr Blog
+ * [ ] Stegonography
+ * [ ] imentech
+ * [ ] Golden Hat Society
+ * [ ] Saidajaula Monster Fit
+ * [ ] Amarelo Designs
+ * [ ] GamesIrados.com
 
 
 
