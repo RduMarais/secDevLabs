@@ -31,6 +31,13 @@ msg:
 	chmod +x deployments/check-init.sh
 	./deployments/check-init.sh
 
+ctf: deploy msg
+	echo "flag to use : ${FLAG_ARG}"
+	echo "FLAG=${FLAG_ARG}" >> deployments/.dockers.env
+
+deploy:
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+
 ## Prints help message
 help:
 	printf "\n${COLOR_YELLOW}${PROJECT}\n------\n${COLOR_RESET}"
