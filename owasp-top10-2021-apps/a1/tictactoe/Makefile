@@ -9,6 +9,7 @@ COLOR_RED = \033[31m
 
 PROJECT := A5 - Tic-Tac-Toe
 PORT := 10005
+FLAG_ARG=$(flag)
 
 ## Installs a development environment
 install: env compose msg

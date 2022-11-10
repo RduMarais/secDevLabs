@@ -17,6 +17,7 @@ COLOR_YELLOW = \033[33m
 COLOR_GREEN = \033[32m
 COLOR_RED = \033[31m
 
+FLAG_ARG=$(flag)
 
 ## Installs a development environment
 install: compose msg
@@ -33,6 +34,14 @@ compose-down:
 msg:
 	chmod +x deployments/check-init.sh
 	./deployments/check-init.sh
+
+## Deploys CTF infra with flag=XXX
+ctf: deploy msg
+	echo "flag to use : ${FLAG_ARG}"
+	curl -i -s -k -X $$'POST' -H $$'Host: localhost:10003' -H $$'Content-Type: application/json' --data-binary $$'{\"user\":\"flag\",\"pass\":\"${FLAG_ARG}\",\"passcheck\":\"${FLAG_ARG}\"}' $$'http://localhost:10003/register'
+
+deploy:
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
 
 ## Gets all go test dependencies
 get-deps:
