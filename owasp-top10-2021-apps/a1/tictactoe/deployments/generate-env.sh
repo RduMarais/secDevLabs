@@ -24,3 +24,4 @@ echo "MYSQL_USER=$DATABASE_USER" >> deployments/.dockers.env
 echo "MYSQL_ROOT_PASSWORD=$DATABASE_PASSWORD" >> deployments/.dockers.env
 echo "DB_HOST=$DATABASE_HOST" >> deployments/.dockers.env
 echo "DB_PORT=$PORT" >> deployments/.dockers.env
+echo "FLAG=$FLAG" >> deployments/.dockers.env

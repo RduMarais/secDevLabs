@@ -135,14 +135,14 @@ app.get('/statistics/data', verifyJWT, async (req, res) => {
         {y: statistics.ties*100/statistics.games,  label: 'Ties'},
         {y: statistics.loses*100/statistics.games,  label: 'Loses'}
     ]
-    let username = user
-    if user=='flag'{
-        username = process.env.FLAG
+    var username_or_flag = user
+    if (user === 'flag'){
+        username_or_flag = process.env.FLAG
     }
     const response = {
         chartData,
         numbers: {
-            username: user,
+            username: username_or_flag,
             games: statistics.games,
             wins: statistics.wins,
             ties: statistics.ties,

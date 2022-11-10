@@ -12,6 +12,29 @@ A laboratory for learning secure web and mobile development in a practical manne
 <a href="https://gitter.im/secDevLabs/community"><img src="https://badges.gitter.im/secDevLabs/community.svg"/></a>
 </p>
 
+## Fork notes
+
+This fork has been created to add CTF-like flags in the following applications : 
+
+ * Tic-Tac-Toe
+   * modifications done
+   * flag in generate-env.sh
+ * SnakePro
+ * CopyNPaste API
+   * no changes needed
+ * SSType
+ * Gossip World
+   * no changes needed
+ * ViniJr Blog
+ * Stegonography
+ * imentech
+ * Golden Hat Society
+ * Saidajaula Monster Fit
+ * Amarelo Designs
+ * GamesIrados.com
+
+
+
 ## Build your lab
 
 By provisioning local environments via docker-compose, you will learn how the most critical web application security risks are exploited and how these vulnerable codes can be fixed to mitigate them. 👩‍💻
