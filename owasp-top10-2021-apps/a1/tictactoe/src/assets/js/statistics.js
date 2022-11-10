@@ -27,6 +27,7 @@ function renderChart(data){
         }]
     });
     chart.render();
+    document.getElementById('username').innerHTML = data.numbers.username
     document.getElementById('games').innerHTML = data.numbers.games
     document.getElementById('wins').innerHTML = data.numbers.wins
     document.getElementById('ties').innerHTML = data.numbers.ties

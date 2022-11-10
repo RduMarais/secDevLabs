@@ -9,6 +9,7 @@ DATABASE_PASSWORD=Pass$RANDOM$RANDOM
 SECRET=$RANDOM$RANDOM
 PORT=3306
 DATABASE_HOST="mysqldb"
+FLAG="pour1nf0{UserS3gm3ntat10n}"
 
 echo "#" > deployments/.dockers.env
 echo "# This file is auto generated and contains all environment variables needed by Tic-Tac-Toe's database" >> deployments/.dockers.env
