@@ -16,6 +16,8 @@ PROJECT := A1 - CopyNPaste API
 PORT := 10001
 SLEEPUNTILAPPSTARTS := 45
 
+FLAG_ARG=$(flag)
+
 ## Test the application
 test: go test ./...
 
@@ -31,8 +33,13 @@ exploit:
 	chmod +x deployments/exploit.sh
 	./deployments/exploit.sh
 
-deploy:
+ctf: deploy msg
+	echo "flag to use : ${FLAG_ARG}"
+	curl -i -s -k -X $$'POST' -H $$'Host: localhost:10001' -H $$'Content-Type: application/json' --data-binary $$'{\"user\":\"${FLAG_ARG}\",\"pass\":\"${FLAG_ARG}\",\"passcheck\":\"${FLAG_ARG}\"}' $$'http://localhost:10001/register'
 
+deploy:
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs down -v 
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
 
 validate:
 
