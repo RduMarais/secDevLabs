@@ -28,12 +28,18 @@ msg:
 	chmod +x deployments/check-init.sh
 	./deployments/check-init.sh
 
+## deploys CTF app with flag=XXXX
 ctf: deploy msg
 	echo "flag to use : ${FLAG_ARG}"
 	echo "${FLAG_ARG}" >> app/flag.txt
 
 deploy:
 	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+
+## removes modification for CTF
+ctf-down:
+	rm app/flag.txt
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs down -v --remove-orphans
 
 ## Prints help message
 help:
