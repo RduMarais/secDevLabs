@@ -15,6 +15,8 @@ services:
       MYSQL_PASSWORD: pass
       MYSQL_USER: user
       MYSQL_DB: a7db
+    # env_file:
+    #   - .dockers.env
     networks: 
       - a7_net
     depends_on:

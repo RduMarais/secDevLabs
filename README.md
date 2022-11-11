@@ -28,8 +28,11 @@ This fork has been created to add CTF-like flags in the following applications :
    * no changes needed
    * deploy python script
  * [x] ViniJr Blog
- * [ ] Stegonography
- * [ ] imentech
+   * no changes needed
+ * [x] Stegonography
+   * no changes needed
+ * [x] Cimentech
+   * no changes needed 
  * [ ] Golden Hat Society
  * [ ] Saidajaula Monster Fit
  * [ ] Amarelo Designs

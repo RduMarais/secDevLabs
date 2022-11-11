@@ -33,6 +33,7 @@ exploit:
 	chmod +x deployments/exploit.sh
 	./deployments/exploit.sh
 
+## Deploys CTF infra with flag=XXX
 ctf: deploy msg
 	echo "flag to use : ${FLAG_ARG}"
 	curl -i -s -k -X $$'POST' -H $$'Host: localhost:10001' -H $$'Content-Type: application/json' --data-binary $$'{\"user\":\"${FLAG_ARG}\",\"pass\":\"${FLAG_ARG}\",\"passcheck\":\"${FLAG_ARG}\"}' $$'http://localhost:10001/register'

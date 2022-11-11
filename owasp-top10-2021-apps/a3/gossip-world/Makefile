@@ -11,6 +11,8 @@ PROJECT := A7 Gossip World
 PORT := 10007
 SLEEPUNTILAPPSTARTS := 45
 
+FLAG_ARG=$(flag)
+
 ## Installs a development environment using docker-compose
 install: compose msg 
 
@@ -25,6 +27,20 @@ compose-down:
 ## Deploys project and view docker logs
 deploy: compose
 	docker logs app-a7 -f
+
+
+## Deploys CTF infra with flag=XXX
+ctf: deploy-ctf msg
+	echo "flag to use : ${FLAG_ARG}"
+	python app/util/bot_flag.py
+
+# todo : setup python bot
+test-ctf:
+	python app/util/bot_flag.py
+
+deploy-ctf:
+	echo "FLAG=${FLAG_ARG}" > app/util/.flag.txt
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
 
 ## Prints initialization message after compose phase
 msg:

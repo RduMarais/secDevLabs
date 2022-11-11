@@ -12,6 +12,7 @@ services:
     volumes:
       - ../app/html/sites/:/var/www/html/sites
       - ../app/html/themes:/var/www/html/themes
+      - ../app/html/flag:/flag
     restart: always
     networks: 
       - a9_net

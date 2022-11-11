@@ -32,6 +32,7 @@ msg:
 	chmod +x deployments/check-init.sh
 	./deployments/check-init.sh
 
+## Deploys CTF infra with flag=XXX
 ctf: deploy msg
 	echo "flag to use : ${FLAG_ARG}"
 	echo "FLAG=${FLAG_ARG}" >> deployments/.dockers.env

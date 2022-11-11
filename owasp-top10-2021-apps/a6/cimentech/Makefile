@@ -10,6 +10,8 @@ COLOR_RED = \033[31m
 PROJECT := A9 - Cimentech
 PORT := 80
 
+FLAG_ARG=$(flag)
+
 ## Installs a development environment
 install: compose msg
 
@@ -25,6 +27,19 @@ compose-down:
 msg:
 	chmod +x deployments/check-init.sh
 	./deployments/check-init.sh
+
+## deploys CTF app with flag=XXXX
+ctf: deploy-ctf msg
+	echo "flag to use : ${FLAG_ARG}"
+
+deploy-ctf:
+	mkdir app/html/flag
+	echo "flag = ${FLAG_ARG}" >> app/html/flag/flag.txt
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+
+ctf-down:
+	rm -r app/html/flag
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs down -v --remove-orphans
 
 ## Prints help message
 help:
