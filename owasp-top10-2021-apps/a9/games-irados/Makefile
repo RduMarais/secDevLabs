@@ -11,6 +11,9 @@ PROJECT := A10 - GamesIRADOS
 PORT := 10010
 SLEEPUNTILAPPSTARTS := 45
 
+FLAG_ARG=$(flag)
+COUPON_ARG=$(coupon)
+
 ## Installs a development environment using docker-compose
 install: compose msg
 
@@ -26,6 +29,20 @@ compose-down:
 msg:
 	chmod +x deployments/check-init.sh
 	./deployments/check-init.sh
+
+## Deploys CTF infra with flag=XXX coupon=XXX
+ctf: deploy-ctf msg
+	echo "flags to use : ${FLAG_ARG} with coupon ${COUPON_ARG}"
+
+deploy-ctf:
+	echo "${FLAG_ARG}" > app/.flag.txt
+	echo "${COUPON_ARG}" >> app/.flag.txt
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+
+ctf-down:
+	rm app/.flag.txt
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs down -v --remove-orphans
+
 
 ## Prints help message
 help:

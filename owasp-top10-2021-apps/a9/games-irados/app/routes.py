@@ -28,6 +28,10 @@ bootstrap = Bootstrap(app)
 
 app.config.from_pyfile('config.py')
 
+flag_value=[]
+with open(".flag.txt", "r") as flag_file:
+    flag_value=flag_file.read().splitlines() 
+
 
 def generate_csrf_token():
     '''
@@ -118,6 +122,9 @@ def cupom():
     if request.method == 'POST':
         coupon = request.form.get('coupon')
         rows, success = database.get_game_coupon(coupon, session.get('username'))
+        if coupon == flag_value[1]:
+            flash("Voce ganhou {}".format(flag_value[0]), "primary")
+            return render_template('coupon.html')
         if not success or rows == None or rows == 0:
             flash("Cupom invalido", "danger")
             return render_template('coupon.html')

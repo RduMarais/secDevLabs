@@ -39,7 +39,8 @@ This fork has been created to add CTF-like flags in the following applications :
    * added flag in app script
  * [x] Amarelo Designs
    * no changes needed
- * [ ] GamesIrados.com
+ * [x] GamesIrados.com
+   * added a coupon and a fonction reset_flag_coupon
 
 When starting an app with a flag, just start it with ``make ctf flag=YouFlag{Wh4tev3rTheFisUrFl4g}`` instead of `make install`
 
