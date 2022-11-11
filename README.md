@@ -37,7 +37,8 @@ This fork has been created to add CTF-like flags in the following applications :
    * added flag in app script
  * [x] Saidajaula Monster Fit
    * added flag in app script
- * [ ] Amarelo Designs
+ * [x] Amarelo Designs
+   * no changes needed
  * [ ] GamesIrados.com
 
 When starting an app with a flag, just start it with ``make ctf flag=YouFlag{Wh4tev3rTheFisUrFl4g}`` instead of `make install`
