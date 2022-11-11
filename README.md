@@ -18,14 +18,16 @@ This fork has been created to add CTF-like flags in the following applications :
 
  * [x] Tic-Tac-Toe
    * modifications done
-   * flag in generate-env.sh
- * [ ] SnakePro
+   * flag to test
+ * [X] SnakePro
+   * no changes needed
  * [x] CopyNPaste API
    * no changes needed
  * [ ] SSType
- * [x] Gossip World
+ * [ ] Gossip World
    * no changes needed
- * [ ] ViniJr Blog
+   * deploy python script
+ * [x] ViniJr Blog
  * [ ] Stegonography
  * [ ] imentech
  * [ ] Golden Hat Society
@@ -33,7 +35,7 @@ This fork has been created to add CTF-like flags in the following applications :
  * [ ] Amarelo Designs
  * [ ] GamesIrados.com
 
-
+When starting an app with a flag, just start it with ``make ctf flag=YouFlag{Wh4tev3rTheFisUrFl4g}`` instead of `make install`
 
 ## Build your lab
 
