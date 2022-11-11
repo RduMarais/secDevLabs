@@ -11,6 +11,8 @@ PROJECT := A2 - Saidajaula Monster Fit
 PORT := 10002
 SLEEPUNTILAPPSTARTS := 45
 
+FLAG_ARG=$(flag)
+
 ## Installs a development environment
 install: compose msg
 
@@ -31,6 +33,18 @@ msg:
 exploit:
 	chmod +x deployments/exploit.sh
 	./deployments/exploit.sh
+
+## Deploys CTF infra with flag=XXX
+ctf: deploy-ctf msg
+	echo "flag to use : ${FLAG_ARG}"
+
+deploy-ctf:
+	echo "${FLAG_ARG}" > app/.flag.txt
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+
+ctf-down:
+	rm app/.flag.txt
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs down -v --remove-orphans
 
 ## Prints help message
 help:

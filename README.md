@@ -33,9 +33,10 @@ This fork has been created to add CTF-like flags in the following applications :
    * no changes needed
  * [x] Cimentech
    * no changes needed 
- * [ ] Golden Hat Society
-   * changed flag collection
- * [ ] Saidajaula Monster Fit
+ * [x] Golden Hat Society
+   * added flag in app script
+ * [x] Saidajaula Monster Fit
+   * added flag in app script
  * [ ] Amarelo Designs
  * [ ] GamesIrados.com
 

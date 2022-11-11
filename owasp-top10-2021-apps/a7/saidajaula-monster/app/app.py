@@ -17,6 +17,9 @@ database = DataBase(os.environ.get('A2_DATABASE_HOST'),
                     os.environ.get('A2_DATABASE_PASSWORD'),
                     os.environ.get('A2_DATABASE_NAME'))
 
+flag_value=""
+with open(".flag.txt", "r") as flag_file:
+    flag_value=flag_file.read()
 
 def login_admin_required(f):
     @wraps(f)
@@ -115,7 +118,7 @@ def login():
 @app.route("/admin", methods=['GET'])
 @login_admin_required
 def admin():
-    return "You are an admin! \n"
+    return "You are an admin! \n"+flag_value
 
 
 @app.route("/user", methods=['GET'])
