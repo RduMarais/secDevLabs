@@ -1,6 +1,10 @@
 from flask import Flask, abort, request, redirect
 import os
 
+flag_value="chicken nugget"
+with open(".flag.txt", "r") as flag_file:
+    flag_value=flag_file.read()
+
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 512
 
@@ -14,7 +18,7 @@ def root():
 @app.route("/golden.secret", methods=["GET"])
 def secret():
     request.environ['wsgi.input_terminated'] = True
-    return "<body bgcolor=\"black\"><img width=\"200px\" style=\"display: block;margin-left: auto;margin-right: auto;\" src=\""+GHAT_IMAGE+"\" /><h1 style=\"color:white;text-align:center\">You made it to the club!</h1><h2 style=\"color:white;text-align:center\">Here is the password to enter: chicken nugget</h2></body>", 200
+    return "<body bgcolor=\"black\"><img width=\"200px\" style=\"display: block;margin-left: auto;margin-right: auto;\" src=\""+GHAT_IMAGE+"\" /><h1 style=\"color:white;text-align:center\">You made it to the club!</h1><h2 style=\"color:white;text-align:center\">Here is the password to enter: "+flag_value+"</h2></body>", 200
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8000)

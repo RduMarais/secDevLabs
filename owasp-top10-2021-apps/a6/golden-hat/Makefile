@@ -19,6 +19,8 @@ PROJECT := Golden Hat Society
 PORT := 10006
 SLEEPUNTILAPPSTARTS := 45
 
+FLAG_ARG=$(flag)
+
 ## Installs a development environment using docker-compose
 install: compose msg
 
@@ -34,6 +36,19 @@ compose-down:
 msg:
 	chmod +x deployments/check-init.sh
 	./deployments/check-init.sh
+
+
+## Deploys CTF infra with flag=XXX
+ctf: deploy-ctf msg
+	echo "flag to use : ${FLAG_ARG}"
+
+deploy-ctf:
+	echo "${FLAG_ARG}" > app/.flag.txt
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+
+ctf-down:
+	rm app/.flag.txt
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs down -v --remove-orphans
 
 ## Prints help message
 help:
