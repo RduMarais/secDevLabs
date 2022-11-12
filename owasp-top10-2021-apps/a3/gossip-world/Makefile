@@ -34,7 +34,6 @@ ctf: deploy-ctf msg
 	echo "flag to use : ${FLAG_ARG}"
 	python app/util/bot_flag.py
 
-# todo : setup python bot
 test-ctf:
 	echo "${FLAG_ARG}" > app/util/.flag.txt
 	python app/util/bot_flag.py

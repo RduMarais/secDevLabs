@@ -9,7 +9,7 @@ services:
     env_file:
       - .dockers.env
     ports:
-      - 10006:10006
+      - 10009:10006
     networks:
       - a6_net
     restart: always
