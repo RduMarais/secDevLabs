@@ -36,11 +36,11 @@ ctf: deploy-ctf msg
 
 # todo : setup python bot
 test-ctf:
-	echo "FLAG=${FLAG_ARG}" > app/util/.flag.txt
+	echo "${FLAG_ARG}" > app/util/.flag.txt
 	python app/util/bot_flag.py
 
 deploy-ctf:
-	echo "FLAG=${FLAG_ARG}" > app/util/.flag.txt
+	echo "${FLAG_ARG}" > app/util/.flag.txt
 	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
 
 ## Prints initialization message after compose phase

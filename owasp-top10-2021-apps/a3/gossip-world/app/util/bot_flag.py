@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.proxy import Proxy, ProxyType
 import requests
 import re
 import time
@@ -9,10 +10,13 @@ import subprocess
 
 class BotSession:
 
-    def __init__(self,debug):
+    def __init__(self,debug,flag=''):
         self.DEBUG = debug
         self.session = requests.Session()
-        self.driver = webdriver.Firefox()
+        proxy_selenium = None
+        if(self.DEBUG):
+            proxy_selenium=Proxy({'proxyType': ProxyType.MANUAL, 'httpProxy': 'http://127.0.0.1:8080' })
+        self.driver = webdriver.Firefox(proxy=proxy_selenium)
         self.csrf_token = ''
         self.user_name = 'user_flag'
         self.user_pass = 'Fl4gUs3r_priv'
@@ -21,9 +25,12 @@ class BotSession:
         if(self.DEBUG):
             self.proxy_servers = {'http':'http://127.0.0.1:8080'}
 
-        self.flag_value=""
-        with open("app/util/.flag.txt", "r") as flag_file:
-            self.flag_value=flag_file.read()
+        if(flag):
+            self.flag_value = flag
+        else:
+            self.flag_value=''
+            with open("app/util/.flag.txt", "r") as flag_file:
+                self.flag_value=flag_file.read().splitlines()[0] # this looks complicated but it just removes the \n at the end
         if(self.DEBUG):
             print('flag value : '+self.flag_value)
 
@@ -64,8 +71,6 @@ class BotSession:
         r = self.session.post("http://localhost:10007/login",data={'_csrf_token':self.csrf_token,'username':self.user_name,'password':self.user_pass,'_csrf_token':self.csrf_token},proxies=self.proxy_servers)
         if(self.DEBUG):
             print('### user connection')
-            # print(r.content)
-            # print(self.session.cookies.get('session'))
 
     def update_cookie_session_to_driver(self):
         cookie_dict = self.driver.get_cookie('session')
@@ -74,6 +79,8 @@ class BotSession:
         del cookie_dict['domain']
         del cookie_dict['secure']
         del cookie_dict['sameSite']
+        del cookie_dict['path']   # test
+        del cookie_dict['httpOnly'] # test
         self.driver.add_cookie(cookie_dict)
         if(self.DEBUG):
             print("### cookie updated session -> webdriver")
@@ -85,14 +92,20 @@ class BotSession:
         if(self.DEBUG):
             print("### cookie updated webdriver -> session")
 
+    def print_session_cookies(self,prefix):
+        if(self.DEBUG):
+            print(prefix+"driver  cookie : "+str(self.driver.get_cookie('session')['value']))
+            print(prefix+"session cookie : "+str(self.session.cookies.get('session')))
 
     def loop_check(self):
         while(True):
             print('-- scan starting')
 
+            # self.update_user_cookie()
+
             # get gossips with session
             r = self.session.get("http://localhost:10007/gossip")
-            gossips = re.findall("href=\"/gossip/\\d{1,3}\"",str(r.content))
+            gossips = re.findall("href=\"/gossip/\\d{1,4}\"",str(r.content))
             print("-- "+str(len(gossips))+" gossips found")
     
             # pass on session cookies to driver
@@ -100,22 +113,28 @@ class BotSession:
 
             # browse gossips with web driver
             for gossip in gossips:
-                self.driver.get('http://localhost:10007/gossip/'+gossip[-2])
-                print("---- "+gossip + ' : ok')
+                url = 'http://localhost:10007/gossip/'+gossip[14:-1]
+                self.update_cookie_session_to_driver()
+                # self.print_session_cookies('pre  > ')
+                self.driver.get(url)
+                # self.print_session_cookies('post > ')
+
+
+                print("---- gossip "+gossip[14:-1] + f" : done ({url})")
 
             # pass on driver cookies to session
             self.update_cookie_driver_to_session()
 
             print('-- scan done, --> time to sleep')
             
-            time.sleep(200)
+            time.sleep(20)
 
 
 
 
 with BotSession(True) as bot:
     # create user
-    # bot.create_user_flag()
+    bot.create_user_flag()
 
     # initialize the session cookie
     bot.update_user_cookie()
@@ -125,5 +144,3 @@ with BotSession(True) as bot:
     bot.loop_check()
 
 
-
-    
