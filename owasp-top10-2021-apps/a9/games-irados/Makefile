@@ -37,11 +37,11 @@ ctf: deploy-ctf msg
 deploy-ctf:
 	echo "${FLAG_ARG}" > app/.flag.txt
 	echo "${COUPON_ARG}" >> app/.flag.txt
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_games_irados up -d --build --force-recreate
 
 ctf-down:
 	rm app/.flag.txt
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs down -v --remove-orphans
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_games_irados down -v --remove-orphans
 
 
 ## Prints help message

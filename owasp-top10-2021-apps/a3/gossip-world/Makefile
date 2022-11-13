@@ -40,7 +40,10 @@ test-ctf:
 
 deploy-ctf:
 	echo "${FLAG_ARG}" > app/util/.flag.txt
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_gossip_world up -d --build --force-recreate
+
+ctf-down:
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_gossip_world down -v --remove-orphans
 
 ## Prints initialization message after compose phase
 msg:

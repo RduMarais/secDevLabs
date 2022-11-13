@@ -16,14 +16,14 @@ services:
         depends_on:
             - mysqldb
         external_links:
-            - mysqldb:mysqldb
+            - mysqldb:mysqldb_a1
         restart: always
 
     mysqldb:
-        container_name: mysqldb
+        container_name: mysqldb_a1
         image: mariadb:10.8.3
-        ports:
-          - "3307:3306"
+        # ports:
+        #   - "3307:3306"
         volumes:
             - db_data:/var/lib/mysql
         env_file:

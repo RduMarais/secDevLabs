@@ -35,11 +35,11 @@ ctf: deploy-ctf msg
 deploy-ctf:
 	# sed is used in a distribution-independant manner
 	sed -i'.bak' -e 's/<h1 class="h3 mb-0 text-gray-800">Dashboard<\/h1>/<h1 class="h3 mb-0 text-gray-800">${FLAG_ARG}<\/h1>/g' app/static/views/admin.html
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_stegonography up -d --build --force-recreate
 
 ctf-down:
 	mv app/static/views/admin.html.bak app/static/views/admin.html
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs down -v --remove-orphans
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_stegonography down -v --remove-orphans
 
 ## Prints initialization message after compose phase
 msg:

@@ -34,13 +34,16 @@ exploit:
 	./deployments/exploit.sh
 
 ## Deploys CTF infra with flag=XXX
-ctf: deploy msg
+ctf: deploy-ctf msg
 	echo "flag to use : ${FLAG_ARG}"
 	curl -i -s -k -X $$'POST' -H $$'Host: localhost:10001' -H $$'Content-Type: application/json' --data-binary $$'{\"user\":\"${FLAG_ARG}\",\"pass\":\"${FLAG_ARG}\",\"passcheck\":\"${FLAG_ARG}\"}' $$'http://localhost:10001/register'
 
-deploy:
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs down -v 
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+deploy-ctf:
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_copy_paste down -v 
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_copy_paste up -d --build --force-recreate
+
+ctf-down:
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_copy_paste down -v --remove-orphans
 
 validate:
 

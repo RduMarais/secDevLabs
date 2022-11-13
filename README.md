@@ -18,31 +18,40 @@ This fork has been created to add CTF-like flags in the following applications :
 
  * [x] Tic-Tac-Toe
    * modifications done
-   * flag to test
- * [X] SnakePro
-   * no changes needed
+   * changed DB port exposition
+ * [x] SnakePro
+   * no changes needed in app
+   * changed DB port exposition
+ * [x] Gossip World
+   * no changes needed in app
+   * added a python script
+   * changed DB port exposition
  * [x] CopyNPaste API
-   * no changes needed
+   * no changes needed in app
+   * changed DB port exposition
  * [ ] SSType
- * [ ] Gossip World
-   * no changes needed
-   * deploy python script
  * [x] ViniJr Blog
-   * no changes needed
+   * no changes needed in app
  * [x] Stegonography
-   * no changes needed
+   * no changes needed in app
+   * changed DB port exposition
  * [x] Cimentech
-   * no changes needed 
+   * no changes needed in app
+   * changed DB port exposition
  * [x] Golden Hat Society
    * added flag in app script
  * [x] Saidajaula Monster Fit
    * added flag in app script
+   * changed DB port exposition
  * [x] Amarelo Designs
-   * no changes needed
+   * no changes needed in app
  * [x] GamesIrados.com
    * added a coupon and a fonction reset_flag_coupon
+   * changed DB port exposition
 
-When starting an app with a flag, just start it with ``make ctf flag=YouFlag{Wh4tev3rTheFisUrFl4g}`` instead of `make install`
+When starting an app with a flag, just start it with ``make ctf flag=YouFlag{Wh4tev3risUrFl4g}`` instead of `make install`. Some apps require a 2nd parameter, such as the coupon for GamesIrados. use `make help` to see the syntax.
+
+Also, some ports bindings have been changed, in order to have all the applications up at the same time
 
 ## Build your lab
 

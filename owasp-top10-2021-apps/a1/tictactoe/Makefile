@@ -38,7 +38,11 @@ ctf: deploy msg
 	echo "FLAG=${FLAG_ARG}" >> deployments/.dockers.env
 
 deploy:
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_tictactoe up -d --build --force-recreate
+
+ctf-down:
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_tictactoe down -v --remove-orphans
+
 
 ## Prints help message
 help:

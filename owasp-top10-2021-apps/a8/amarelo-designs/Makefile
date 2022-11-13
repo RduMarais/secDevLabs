@@ -38,12 +38,12 @@ ctf: deploy-ctf msg
 deploy-ctf:
 	echo "${FLAG_BACK_ARG}" > app/flag.txt
 	sed -i'.bak' -e 's/<h1 class="page-header">Dashboard<\/h1>/<h1 class="page-header">${FLAG_FRONT_ARG}<\/h1>/g' app/static/User/pages/index.html
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_amarelo up -d --build --force-recreate
 
 ctf-down:
 	rm app/flag.txt
 	mv app/static/User/pages/index.html.bak app/static/User/pages/index.html
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs down -v --remove-orphans
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_amarelo down -v --remove-orphans
 
 
 ## Prints help message

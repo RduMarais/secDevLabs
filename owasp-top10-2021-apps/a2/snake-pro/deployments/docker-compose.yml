@@ -29,9 +29,9 @@ services:
         build:
             context: ../
             dockerfile: deployments/mongo.Dockerfile
-        ports:
-          - "27017:27017"
-          - "27018:27018"
+        # ports:
+        #   - "27017:27017"
+        #   - "27018:27018"
         volumes:
             - mongo_vol:/data/db
         networks:

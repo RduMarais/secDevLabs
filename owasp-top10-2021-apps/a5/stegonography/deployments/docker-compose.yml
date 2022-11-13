@@ -19,9 +19,9 @@ services:
     container_name: Stegonography_db
     env_file:
       - .dockers.env
-    ports:
-      - 27017:27017
-      - 27018:27018
+    # ports:
+    #   - 27017:27017
+    #   - 27018:27018
     networks:
       - a6_net
 

@@ -28,8 +28,8 @@ services:
   mysqldb-a7:
     container_name: mysqldb-a7
     image: mariadb:10.6.3
-    ports:
-      - "3307:3307"
+    # ports:
+    #   - "3307:3307"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: a7db 

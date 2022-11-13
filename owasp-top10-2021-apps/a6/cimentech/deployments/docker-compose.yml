@@ -22,8 +22,8 @@ services:
     container_name: a9db
     environment:
       POSTGRES_PASSWORD: example
-    ports:
-      - 5432:5432
+    # ports:
+    #   - 5432:5432
     networks: 
       - a9_net
     volumes:

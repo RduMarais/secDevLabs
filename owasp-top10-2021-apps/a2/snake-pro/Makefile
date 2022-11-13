@@ -36,12 +36,15 @@ msg:
 	./deployments/check-init.sh
 
 ## Deploys CTF infra with flag=XXX
-ctf: deploy msg
+ctf: deploy-ctf msg
 	echo "flag to use : ${FLAG_ARG}"
 	curl -i -s -k -X $$'POST' -H $$'Host: localhost:10003' -H $$'Content-Type: application/json' --data-binary $$'{\"user\":\"flag\",\"pass\":\"${FLAG_ARG}\",\"passcheck\":\"${FLAG_ARG}\"}' $$'http://localhost:10003/register'
 
-deploy:
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+deploy-ctf:
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_snakepro up -d --build --force-recreate
+
+ctf-down:
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_snakepro down -v --remove-orphans
 
 ## Gets all go test dependencies
 get-deps:

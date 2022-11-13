@@ -35,11 +35,11 @@ ctf: deploy-ctf msg
 deploy-ctf:
 	mkdir app/html/flag
 	echo "flag = ${FLAG_ARG}" >> app/html/flag/flag.txt
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs up -d --build --force-recreate
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_cimentech up -d --build --force-recreate
 
 ctf-down:
 	rm -r app/html/flag
-	docker-compose -f deployments/docker-compose.yml -p secdevlabs down -v --remove-orphans
+	docker-compose -f deployments/docker-compose.yml -p secdevlabs_cimentech down -v --remove-orphans
 
 ## Prints help message
 help:
