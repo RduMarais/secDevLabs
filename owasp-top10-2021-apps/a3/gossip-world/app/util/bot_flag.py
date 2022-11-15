@@ -40,7 +40,6 @@ class BotSession:
         self.driver.add_cookie({'name':'flag','value':self.flag_value,'httpOnly':False,'secure':False})
         if(self.DEBUG):
             print('driver initiated')
-            # print(self.driver.get_cookies())
 
     def __enter__(self):
         return self
@@ -62,7 +61,6 @@ class BotSession:
         r = self.session.post("http://localhost:10007/register",data={'_csrf_token':self.csrf_token,'username':self.user_name,'password1':self.user_pass,'password2':self.user_pass,'_csrf_token':self.csrf_token},proxies=self.proxy_servers)
         if(self.DEBUG):
             print('### user creation')
-            # print(r.content)
 
     # log in and updates cookies
     def update_user_cookie(self):
@@ -101,8 +99,6 @@ class BotSession:
         while(True):
             print('-- scan starting')
 
-            # self.update_user_cookie()
-
             # get gossips with session
             r = self.session.get("http://localhost:10007/gossip")
             gossips = re.findall("href=\"/gossip/\\d{1,4}\"",str(r.content))
@@ -120,7 +116,7 @@ class BotSession:
                 # self.print_session_cookies('post > ')
 
 
-                print("---- gossip "+gossip[14:-1] + f" : done ({url})")
+                print("---- gossip "+gossip[14:-1] + " : done ("+url+")")
 
             # pass on driver cookies to session
             self.update_cookie_driver_to_session()
@@ -132,7 +128,7 @@ class BotSession:
 
 
 
-with BotSession(True) as bot:
+with BotSession(False) as bot:
     # create user
     bot.create_user_flag()
 

@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: example
     
     ports:
-      - 80:80
+      - 10011:80
     volumes:
       - ../app/html/sites/:/var/www/html/sites
       - ../app/html/themes:/var/www/html/themes

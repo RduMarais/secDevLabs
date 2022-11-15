@@ -35,9 +35,11 @@ This fork has been created to add CTF-like flags in the following applications :
  * [x] Stegonography
    * no changes needed in app
    * changed DB port exposition
+   * changed app port
  * [x] Cimentech
    * no changes needed in app
    * changed DB port exposition
+   * changed app port
  * [x] Golden Hat Society
    * added flag in app script
  * [x] Saidajaula Monster Fit

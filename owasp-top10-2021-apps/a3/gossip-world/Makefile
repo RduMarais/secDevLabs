@@ -32,17 +32,18 @@ deploy: compose
 ## Deploys CTF infra with flag=XXX
 ctf: deploy-ctf msg
 	echo "flag to use : ${FLAG_ARG}"
-	python app/util/bot_flag.py
+	screen -dm -S gossip_bot python app/util/bot_flag.py
 
 test-ctf:
 	echo "${FLAG_ARG}" > app/util/.flag.txt
-	python app/util/bot_flag.py
+	screen -dm -S gossip_bot python app/util/bot_flag.py
 
 deploy-ctf:
 	echo "${FLAG_ARG}" > app/util/.flag.txt
 	docker-compose -f deployments/docker-compose.yml -p secdevlabs_gossip_world up -d --build --force-recreate
 
 ctf-down:
+	rm app/util/.flag.txt
 	docker-compose -f deployments/docker-compose.yml -p secdevlabs_gossip_world down -v --remove-orphans
 
 ## Prints initialization message after compose phase
